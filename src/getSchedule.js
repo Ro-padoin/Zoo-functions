@@ -29,20 +29,22 @@ function scheduleByDay(scheduleTarget, { open, close }, exhibition) {
 
 function getSchedule(scheduleTarget) {
   if (!daysOfTheWeek.includes(scheduleTarget) && !animalName.includes(scheduleTarget)) {
-    return daysOfTheWeek.reduce((entireAgenda, day) => ({
-      ...entireAgenda,
-      ...getSchedule(day),
-    }), {});
+    return daysOfTheWeek.reduce((entireAgenda, day) => (
+      {
+        ...entireAgenda,
+        ...getSchedule(day),
+      }
+    ), {});
   }
 
   if (animalName.includes(scheduleTarget)) return schedulePerAnimal(scheduleTarget);
-  
+
   const filterExhibition = species.filter(({ availability }) => availability
     .includes(scheduleTarget));
 
   const mapExhibition = filterExhibition.map(({ name }) => name);
 
-  const agenda = hours[scheduleTarget];  
+  const agenda = hours[scheduleTarget];
 
   if (scheduleTarget === 'Monday') return scheduleTheMonday(scheduleTarget);
 
