@@ -14,7 +14,7 @@ describe('14 - Crie um mapeamento geográfico das espécies e seus animais', () 
     expect(actual).toEqual(expected);
   });
 
-  it('sem a opção `includeNames` especificada e somente com a opção `sex: female` especificada, retorna todos os animais categorizados por localização sem aplicar o filtro `sex`', () => {
+  it.only('sem a opção `includeNames` especificada e somente com a opção `sex: female` especificada, retorna todos os animais categorizados por localização sem aplicar o filtro `sex`', () => {
     const expected = {
       NE: ['lions', 'giraffes'],
       NW: ['tigers', 'bears', 'elephants'],

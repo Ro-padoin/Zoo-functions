@@ -51,6 +51,5 @@ function getSchedule(scheduleTarget) {
   return scheduleByDay(scheduleTarget, agenda, mapExhibition);
 }
 
-console.log(schedulePerAnimal('penguins'));
 
 module.exports = getSchedule;

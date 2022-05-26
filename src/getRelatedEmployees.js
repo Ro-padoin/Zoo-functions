@@ -17,7 +17,9 @@ function getRelatedEmployees(managerId) {
   if (isManager(managerId)) {
     const filterManager = employees
       .filter((employee) => employee.managers.some((manager) => manager === managerId));
+
     const result = filterManager.map(({ firstName, lastName }) => `${firstName} ${lastName}`);
+
     return result;
   }
 }
