@@ -1,44 +1,37 @@
 const { species } = require('../data/zoo_data');
 
-function getAnimalBySex(sex, template) {
-  return species.reduce((totalSpecies, specie) => {
-    const { location, name, residents } = specie;
-    totalSpecies[location] = species.map((resident) => 
-    );
-    return totalSpecies;
-  }, { ...template });
-  
-}
-
-function getAnimalMap(options) {
-  const template = {
-    NE: [],
-    NW: [],
-    SE: [],
-    SW: [],
+function sortElements(element, sorted) {
+  if (sorted) {
+    return element.sort();
   }
+  return element;
+};
 
-  if (!options.includeNames && options.sex) {
-    console.log(options.sex);
-    return getAnimalBySex(options.sex, template);
-  }
+function getAnimalMap(options = {}) {
+  const { includeNames, sex, sorted } = options;
 
-//   let result = species.reduce((result, { location, name, residents }) => {
-//     let _residents = [...residents];
-//     if (sex) {
-//       _residents = _residents.filter(resident => resident.sex === sex);
-//     }
-//     const residentsNames = _residents.map(resident => resident.name);
-//     if (sorted) {
-//       residentsNames.sort();
-//     }
-//     if (residentsNames.length) result[location][name] = residentsNames;
-//     return result;
-//   }, { ...template });
+  return species.reduce((totalAnimalMap, specie) => {
 
-//   return result;
+    if (!includeNames) {
+      totalAnimalMap[specie.location].push(specie.name);
+      return totalAnimalMap;      
+    } 
+    
+    if (sex) {
+      const filterResidents = specie.residents.filter((resident) => resident.sex === sex)
+      totalAnimalMap[specie.location].push({
+        [specie.name]: sortElements(filterResidents.map((resident) => resident.name), sorted),
+      });
+      return totalAnimalMap;
+    } 
+    
+    totalAnimalMap[specie.location].push({
+      [specie.name]: sortElements(specie.residents.map((resident) => resident.name), sorted),
+    });
+
+    return totalAnimalMap;
+
+  }, { NE: [], NW: [], SE: [], SW: [] });
 }
-
-console.log(getAnimalMap({ sex: 'female' }));
 
 module.exports = getAnimalMap;
