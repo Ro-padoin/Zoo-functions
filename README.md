@@ -1,4 +1,4 @@
-# Projeto Trybe Zoo Functions!
+# Zoo Functions!
 
 Projeto tem por objetivo organizar as informações de um zoológico.
 
