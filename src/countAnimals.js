@@ -8,8 +8,6 @@ function countAnimals(animal) {
       obj[residente.name] = residente.residents.length;
       return obj;
     }, {});
-
-    // return species.map(specie => ({[specie.name]: specie.residents.length})); nao da certo assim
   }
   const { specie, sex } = animal;
   if (specie !== undefined && sex !== undefined) {

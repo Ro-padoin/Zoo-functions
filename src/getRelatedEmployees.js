@@ -3,6 +3,7 @@ const { employees } = require('../data/zoo_data');
 function isManager(id) {
   const searchaManager = employees
   .reduce((totalGerente, employee) => totalGerente.concat(...employee.managers), []);
+  // Outra forma de resolver com reduce
   // .reduce((totalGerente, employee) => {
   //   totalGerente.push(...employee.managers)
   //   return totalGerente;
